@@ -1,0 +1,8 @@
+env
+*.ipynb
+db.sqlite3
+*.pot
+*.log
+__pycache__/
+*.pyc
+.idea
