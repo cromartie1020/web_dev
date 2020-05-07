@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import json
+with open('/etc/config.json') as config_file:
+    config=json.load(config_file)
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,7 +29,7 @@ SECRET_KEY = '06^z94uihmc+0^ms#vrgc9-(po12u3wql0z7mz$poqms@hqf(b'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','localhost']
 
 
 # Application definition
@@ -82,8 +86,16 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        #'ENGINE': 'django.db.backends.sqlite3',
+        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME':'web_dev',
+        'USER':os.environ.get('DB_USER'),
+        'PASSWORD':os.environ.get('DB_PASSWORD'),
+        'HOST':'127.0.0.1',
+        'PORT':'5432',
+
+
     }
 }
 
